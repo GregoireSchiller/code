@@ -1,0 +1,162 @@
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url(<%= image_url 'homepage.jpg' %>); background-position: center center;">
+  <div class="">
+    <h1 style="font-family: 'Roboto', sans-serif;">Simundia</h1>
+    <p>Un sujet vous préoccupe ? Vous aimeriez bénéficier de conseils d'un psychologue ?</p>
+    <% if current_user == nil %>
+      <%= link_to new_user_session_path do %>
+        <div id ="button-home" class="btn btn-primary">
+          Posez votre question
+        </div>
+      <% end %>
+    <% else %>
+      <%= simple_form_for @question do |f| %>
+        <div class="input-box"> <%= f.input :text_question, input_html: { class: 'form-field-in-home' }, label: false, placeholder: "Posez une question à un psychologue..." %> </div>
+        <%= f.input :user_id, :as => :hidden, :input_html => { :value => @user.id } %>
+        <div> <%= f.button :submit, "Obtenez une réponse maintenant", id: "button-home", class: "btn-primary" %> </div>
+      <% end %>
+    <% end %>
+    <p> Nos spécialistes vous répondront en quarante-huit heures gratuitement. </p>
+    <p> Tous les échanges sont confidentiels et anonymes. </p>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="container text-center">
+  <h2 class="font-color-blue">Nous sommes là pour vous</h2>
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <div> <%= image_tag "last24hours.png" %> </div>
+        <h4>Disponibilité immédiate 24h/24 et 7 jours sur 7</h3>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div> <%= image_tag "graduationcap.png" %> </div>
+        <h4>Psychologues diplômés et certifiés</h3>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div> <%= image_tag "blind.png" %> </div>
+        <h4>Réponse sur-mesure et confidentialité des échanges</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper-grey">
+  <div class="container text-center">
+  <h2 class="font-color-blue">Adapté à tous vos besoins</h2>
+    <div class="row">
+      <div class="col-xs-12 col-md-3">
+       <div> <%= image_tag "manager.png" %> </div>
+       <h4>Stress et burn-out</h4>
+      </div>
+      <div class="col-xs-12 col-md-3">
+       <div> <%= image_tag "crying.png" %> </div>
+       <h4>Déprime</h4>
+      </div>
+      <div class="col-xs-12 col-md-3">
+       <div> <%= image_tag "swearingfemale.png" %> </div>
+       <h4>Relations amoureuses et familiales</h4>
+      </div>
+      <div class="col-xs-12 col-md-3">
+       <div> <%= image_tag "gender.png" %> </div>
+       <h4>Sexologie</h4>
+      </div>
+    </div>
+    <div class="row">
+     <div class="col-xs-12 col-md-3">
+       <div> <%= image_tag "spaghetti.png" %> </div>
+       <h4>Comportement alimentaire</h4>
+     </div>
+     <div class="col-xs-12 col-md-3">
+       <div> <%= image_tag "dancewithdevil.png" %> </div>
+       <h4>Addictions</h4>
+     </div>
+     <div class="col-xs-12 col-md-3">
+      <div> <%= image_tag "enteringheavenalive.png" %> </div>
+      <h4>Deuil</h4>
+     </div>
+     <div class="col-xs-12 col-md-3">
+      <div> <%= image_tag "dizzyperson2.png" %> </div>
+      <h4>Anxiété et phobies</h4>
+     </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="container text-center">
+  <h2 class="font-color-blue">A votre service, tout de suite</h3>
+    <div class="row">
+      <div class="col-xs-offset-4 col-xs-4">
+
+        <div class="card-structure">
+          <div class="card-header">
+            <span>STANDARD</span>
+          </div>
+          <div class="card-maincontent">
+            <h4>Réponse gratuite</h4>
+            <h5>en 48 heures</h5>
+          </div>
+          <% if current_user == nil %>
+            <%= link_to new_user_session_path do %>
+              <div id ="button-home" class="btn btn-secondary">Recevez une réponse</div>
+            <% end %>
+          <% else %>
+            <%= link_to user_path(current_user) do %>
+              <div id ="button-home" class="btn btn-secondary">Recevez une réponse</div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper-grey">
+  <div class="container">
+    <h2 class="font-color-blue text-center">Nous faisons des heureux</h3>
+    <div class="row">
+      <div class="col-xs-2">
+        <div> <%= image_tag "emilie.jpg", class: "badge-round" %> </div>
+        <p class="text-center">Emilie, 31 ans, Tours</p>
+      </div>
+      <div class="col-xs-10">
+        <h4><strong>Une réponse qui m'a éclairée</strong></h4>
+        <p>Le comportement de mon patron m'intriguait. A la lecture des magazines, je me demandais s'il ne se comportait pas parfois comme un pervers narcissique. J'avais besoin de l'avis d'un expert pour bien comprendre les symptomes de ce type de comportement ! La réponse de la psy était très claire, elle m'a rassurée et m'a aidé à mieux gérer les colères de mon responsable.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="container text-center">
+    <h2 class="font-color-blue text-center">Faites connaissance avec nos spécialistes</h3>
+    <p style="padding-bottom: 10px">Tous nos psychologues respectent le code de déontologie de leur profession. Ils sont titulaires d'un diplôme reconnu par l'Etat français. Ils vous garantissent des échanges confidentiels, sécurisés et anonymes. Ils s'appuient sur leur solide formation et leur expérience de terrain pour répondre de manière personnalisée à chacune de vos interrogations.</p>
+    <div class="row">
+      <div class="col-xs-3">
+        <div> <%= image_tag "ng.jpg", class: "badge-round-small" %> </div>
+        <p>Mme N. G.</p>
+        <p>Diplôme d'Etudes Approfondies Comportements, Processus Cognitifs et Affectifs, Université Paris 10</p>
+        <p>11 ans d'exercice</p>
+      </div>
+      <div class="col-xs-3">
+        <div> <%= image_tag "gb.jpg", class: "badge-round-small" %> </div>
+        <p>M G. B.</p>
+        <p>Master en Psychologie Générale, Université de Montpellier</p>
+        <p>7 ans d'exercice</p>
+      </div>
+      <div class="col-xs-3">
+        <div> <%= image_tag "jv.jpg", class: "badge-round-small" %> </div>
+        <p>Mme J. V.</p>
+        <p>Master en Psychologie, Université de Grenoble</p>
+        <p>24 ans d'exercice</p>
+      </div>
+      <div class="col-xs-3">
+        <div> <%= image_tag "ml.jpg", class: "badge-round-small" %> </div>
+        <p>M M. L.</p>
+        <p>Master en Sciences Humaines et Sociales, mention Psychologie, Université de Strasbourg</p>
+        <p>17 ans d'exercice</p>
+      </div>
+    </div>
+
+  </div>
+</div>

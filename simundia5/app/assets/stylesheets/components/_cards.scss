@@ -1,0 +1,19 @@
+.card-structure {
+  border-width: 3px;
+  border-style: solid;
+  box-shadow: 1px 1px 0 $grey;
+  border-color: $grey;
+}
+
+.card-header {
+  background-color: $grey;
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.card-maincontent {
+  h4 {
+    padding: 10px;
+  }
+}

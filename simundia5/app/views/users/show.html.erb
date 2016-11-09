@@ -1,0 +1,63 @@
+<h1 class="text-center">Bienvenue, <%= @user.first_name + " " + @user.last_name %> </h1>
+
+<h2 class="font-color-blue text-center" style="padding-bottom: 30px">Mes échanges</h2>
+
+<div class="container">
+
+<% if @user.doctor == false %>
+  <% @user.patient_questions.each do |question| %>
+    <div class="row">
+      <div class="col-xs-offset-6 col-xs-5">
+        <div class="message-sent"><%= question.text_question %></div>
+      </div>
+    </div>
+    <% if question.text_response == nil %>
+      <div class="row">
+        <div class="col-xs-offset-1 col-xs-5">
+          <div class="message-received"><p>Votre réponse arrive bientôt</p></div>
+        </div>
+      </div>
+    <% else %>
+      <div class="row">
+        <div class="col-xs-offset-1 col-xs-5">
+          <div class="message-received">
+            <p class="font-blue"> <strong> <%= User.find(question.doctor_id).first_name + " " + User.find(question.doctor_id).last_name%> </strong></p>
+            <p> <%= question.text_response %> </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+<div class="row">
+  <div class="col-xs-offset-7 col-xs-5">
+
+    <%= simple_form_for @question do |f| %>
+      <div> <%= f.input :text_question, input_html: { class: 'new-message' }, label: false, placeholder: "Posez une nouvelle question à un psychologue" %> </div>
+      <%= f.input :user_id, :as => :hidden, :input_html => { :value => @user.id } %>
+      <div> <%= f.button :submit, "Obtenez une réponse maintenant", class: "btn-secondary" %> </div>
+    <% end %>
+  </div>
+</div>
+
+</div>
+<% else %>
+
+  <% @user.doctor_questions.each do |question| %>
+    <%= question.text_question %>
+    <% if question.text_response == nil %>
+      <%= simple_form_for @question, :url => url_for(:action => 'update', :controller => 'questions'), :method => 'patch' do |f| %>
+        <%= f.label :text_response %>
+        <%= f.text_field :text_response %>
+        <%= f.input :user_id, :as => :hidden, :input_html => { :value => @user.id } %>
+        <%= f.input :question_id, :as => :hidden, :input_html => { :value => question.id } %>
+        <%= f.submit %>
+      <% end %>
+    <% else %>
+      <p> <%= question.text_response %> </p>
+    <% end %>
+  <% end %>
+
+<% end %>
+
+
